@@ -1,5 +1,17 @@
 ## Tic-tac-toe
 
+Play Tic-tac-toe from the terminal, against the computer.
+
+### Usage
+
+    > gem install ttt_dclovell-#.#.#.gem
+    > irb
+    irb> require 'ttt_dclovell'
+    => true
+    irb> TttDclovell.play
+
+### Original task description
+
 Your task is to write a program to play [tic-tac-toe](http://en.wikipedia.org/wiki/Tic-tac-toe)
 in the terminal. When the program is invoked, it must let the user pick whether
 to play as `X` or `O`, and then run through the game letting the user play
