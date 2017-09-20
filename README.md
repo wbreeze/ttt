@@ -4,11 +4,22 @@ Play Tic-tac-toe from the terminal, against the computer.
 
 ### Usage
 
+In order to run the program, from a command line with Ruby
+and RubyGems available:
+
     > gem install ttt_dclovell-#.#.#.gem
     > irb
     irb> require 'ttt_dclovell'
     => true
     irb> TttDclovell.play
+
+### Source
+
+In order to view the source:
+
+    > gem unpack ttt_dclovell-#.#.#.gem
+
+will leave complete source in directory, `ttt_dclovell-#.#.#`.
 
 ### Original task description
 
@@ -21,63 +32,61 @@ player wins or when the board is full.
 
 A typical session might look like this:
 
-```
-$ ./bin/ttt
+    $ ./bin/ttt
 
-Which player do you want to be? X or O?
-O
+    Which player do you want to be? X or O?
+    O
 
-          A   B   C
+              A   B   C
 
-        +---+---+---+
-    1   | X |   |   |
-        +---+---+---+
-    2   |   |   |   |
-        +---+---+---+
-    3   |   |   |   |
-        +---+---+---+
+            +---+---+---+
+        1   | X |   |   |
+            +---+---+---+
+        2   |   |   |   |
+            +---+---+---+
+        3   |   |   |   |
+            +---+---+---+
 
-Where do you want to move?
-B2
+    Where do you want to move?
+    B2
 
-          A   B   C
+              A   B   C
 
-        +---+---+---+
-    1   | X |   |   |
-        +---+---+---+
-    2   |   | O |   |
-        +---+---+---+
-    3   |   | X |   |
-        +---+---+---+
+            +---+---+---+
+        1   | X |   |   |
+            +---+---+---+
+        2   |   | O |   |
+            +---+---+---+
+        3   |   | X |   |
+            +---+---+---+
 
-Where do you want to move?
-A3
+    Where do you want to move?
+    A3
 
-          A   B   C
+              A   B   C
 
-        +---+---+---+
-    1   | X | X |   |
-        +---+---+---+
-    2   |   | O |   |
-        +---+---+---+
-    3   | O | X |   |
-        +---+---+---+
+            +---+---+---+
+        1   | X | X |   |
+            +---+---+---+
+        2   |   | O |   |
+            +---+---+---+
+        3   | O | X |   |
+            +---+---+---+
 
-Where do you want to move?
-C1
+    Where do you want to move?
+    C1
 
-          A   B   C
+              A   B   C
 
-        +---+---+---+
-    1   | X | X | O |
-        +---+---+---+
-    2   |   | O |   |
-        +---+---+---+
-    3   | O | X |   |
-        +---+---+---+
+            +---+---+---+
+        1   | X | X | O |
+            +---+---+---+
+        2   |   | O |   |
+            +---+---+---+
+        3   | O | X |   |
+            +---+---+---+
 
-O has won!
-```
+    O has won!
 
 You are free to write the program however you like, and use any language,
 libraries and tools you think might be useful.
