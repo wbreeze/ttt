@@ -63,23 +63,46 @@ RSpec.describe 'CammandParser' do
     expect(@cp.parse(" A 1 ")).to eq :pos
     expect(@cp.parse("a1")).to eq :pos
     expect(@cp.parse("A1")).to eq :pos
-    expect(@cp.pos).to eq 0
+    expect(@cp.row).to eq 0
+    expect(@cp.col).to eq 0
     expect(@cp.parse("B1")).to eq :pos
-    expect(@cp.pos).to eq 1
+    expect(@cp.row).to eq 0
+    expect(@cp.col).to eq 1
     expect(@cp.parse("C1")).to eq :pos
-    expect(@cp.pos).to eq 2
+    expect(@cp.row).to eq 0
+    expect(@cp.col).to eq 2
     expect(@cp.parse("A2")).to eq :pos
-    expect(@cp.pos).to eq 3
+    expect(@cp.row).to eq 1
+    expect(@cp.col).to eq 0
     expect(@cp.parse("B2")).to eq :pos
-    expect(@cp.pos).to eq 4
+    expect(@cp.row).to eq 1
+    expect(@cp.col).to eq 1
     expect(@cp.parse("C2")).to eq :pos
-    expect(@cp.pos).to eq 5
+    expect(@cp.row).to eq 1
+    expect(@cp.col).to eq 2
     expect(@cp.parse("A3")).to eq :pos
-    expect(@cp.pos).to eq 6
+    expect(@cp.row).to eq 2
+    expect(@cp.col).to eq 0
     expect(@cp.parse("B3")).to eq :pos
-    expect(@cp.pos).to eq 7
+    expect(@cp.row).to eq 2
+    expect(@cp.col).to eq 1
     expect(@cp.parse("C3")).to eq :pos
-    expect(@cp.pos).to eq 8
+    expect(@cp.row).to eq 2
+    expect(@cp.col).to eq 2
+  end
+
+  it 'recognizes invalid col' do
+    expect(@cp.parse("D1")).to eq :unrecognized
+    expect(@cp.col).to eq CommandParser::INVALID_POSITION
+    expect(@cp.parse("X1")).to eq :unrecognized
+    expect(@cp.col).to eq CommandParser::INVALID_POSITION
+  end
+
+  it 'recognizes invalid row' do
+    expect(@cp.parse("A4")).to eq :unrecognized
+    expect(@cp.row).to eq CommandParser::INVALID_POSITION
+    expect(@cp.parse("A10")).to eq :unrecognized
+    expect(@cp.row).to eq CommandParser::INVALID_POSITION
   end
 
   it 'rejects bad position' do
@@ -89,13 +112,16 @@ RSpec.describe 'CammandParser' do
 
   it 'resets pos on parse' do
     expect(@cp.parse("A1")).to eq :pos
-    expect(@cp.pos).to eq 0
+    expect(@cp.row).to eq 0
+    expect(@cp.col).to eq 0
     expect(@cp.parse("n")).to eq :no
-    expect(@cp.pos).to eq CommandParser::INVALID_POSITION
+    expect(@cp.row).to eq CommandParser::INVALID_POSITION
+    expect(@cp.col).to eq CommandParser::INVALID_POSITION
   end
 
   it 'sets pos on initialization' do
     ncp = CommandParser.new
-    expect(ncp.pos).to eq CommandParser::INVALID_POSITION
+    expect(ncp.row).to eq CommandParser::INVALID_POSITION
+    expect(ncp.col).to eq CommandParser::INVALID_POSITION
   end
 end

@@ -1,14 +1,15 @@
 class CommandParser
   INVALID_POSITION = -1
 
-  attr_reader :pos
+  attr_reader :row, :col
 
   def initialize
     reset_pos
   end
 
   def reset_pos
-    @pos = INVALID_POSITION
+    @row = INVALID_POSITION
+    @col = INVALID_POSITION
   end
 
   def parse(ui)
@@ -39,25 +40,31 @@ class CommandParser
   private
   ###
 
-  def parse_pos_match(match)
-    col = match[1]
-    cv = -1
-    case col[0].upcase
-    when 'A'
-      cv = 0
-    when 'B'
-      cv = 1
-    when 'C'
-      cv = 2
-    end
-
-    row = match[2]
-    rv = row.to_i - 1
-
-    if (0 <= cv && cv <= 2 && 0 <= rv && rv <= 2)
-      @pos = rv * 3 + cv
+  def parse_row(row_s)
+    rv = row_s.to_i - 1
+    @row = if (0 <= rv && rv <= 2)
+      rv
     else
-      @pos = INVALID_POSITION
+      INVALID_POSITION
     end
+    @row != INVALID_POSITION
+  end
+
+  def parse_col(col_s)
+    @col = case col_s[0].upcase
+    when 'A'
+      0
+    when 'B'
+      1
+    when 'C'
+      2
+    else
+      INVALID_POSITION
+    end
+    @col != INVALID_POSITION
+  end
+
+  def parse_pos_match(match)
+    parse_col(match[1]) && parse_row(match[2])
   end
 end
