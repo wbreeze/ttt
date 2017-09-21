@@ -11,11 +11,11 @@ class TerminalInteractor
   end
 
   def get_player_role_preference
-    tkn = get_response('Which player do you want to be? X or O?', [:be_x, :be_y])
-    return case :tkn
+    tkn = get_response('Which player do you want to be? X or O?', [:be_x, :be_o])
+    return case tkn
     when :be_x
       :first_mover
-    when :by_y
+    when :be_o
       :second_mover
     else
       tkn

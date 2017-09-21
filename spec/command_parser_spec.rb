@@ -26,9 +26,9 @@ RSpec.describe 'CammandParser' do
     expect(@cp.parse("x\n")).to eq :be_x
   end
 
-  it 'recognizes Y' do
-    expect(@cp.parse("y")).to eq :be_y
-    expect(@cp.parse("Y")).to eq :be_y
+  it 'recognizes O' do
+    expect(@cp.parse("o")).to eq :be_o
+    expect(@cp.parse("O")).to eq :be_o
   end
 
   it 'recognizes yes' do

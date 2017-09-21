@@ -46,8 +46,8 @@ You can always type 'q' to quit or exit, stop, leave.
       :help
     when /^x$/i
       :be_x
-    when /^y$/i
-      :be_y
+    when /^o$/i
+      :be_o
     when /^yes$/i
       :yes
     when /^no?$/i
