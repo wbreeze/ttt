@@ -2,6 +2,7 @@ class TttDclovell
   VERSION = '0.2.0'
 
   def self.play
-    puts "Hey"
+    controller = MasterController.new
+    controller.play
   end
 end
