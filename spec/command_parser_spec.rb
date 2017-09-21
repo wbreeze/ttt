@@ -124,4 +124,18 @@ RSpec.describe 'CammandParser' do
     expect(ncp.row).to eq CommandParser::INVALID_POSITION
     expect(ncp.col).to eq CommandParser::INVALID_POSITION
   end
+
+  it 'produces help text' do
+    help = @cp.help_text
+    expect(help).to match(/'q'/)
+    expect(help).to match(/exit/)
+    expect(help).to match(/'x'/)
+    expect(help).to match(/'o'/)
+    expect(help).to match(/'n'/)
+    expect(help).to match(/'y'/)
+    expect(help).to match(/'B2'/)
+    expect(help).to match(/'B'/)
+    expect(help).to match(/'2'/)
+    expect(help).to match(/'A1'/)
+  end
 end
