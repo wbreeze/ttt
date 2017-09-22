@@ -22,6 +22,11 @@ class TerminalInteractor
     end
   end
 
+  def get_player_move
+    tkn = get_response('Where do you want to move?', [:pos])
+    return { token: tkn, row: @cp.row, col: @cp.col }
+  end
+
   def thank_partner
     output.puts('Thank you for playing!')
   end
@@ -46,19 +51,15 @@ class TerminalInteractor
       valid = valid_tokens.include? tkn
       unless valid
         if tkn == :help
-          display_help
+          output.puts(@cp.help_text)
         elsif tkn == :bye
           valid = true
           @did_quit = true
         else
-          output.puts("Type 'h' and press enter for help")
+          output.puts("Type 'h' and press enter for help.\n")
         end
       end
     end
     return tkn
-  end
-
-  def display_help
-    output.puts(@cp.help_text)
   end
 end
