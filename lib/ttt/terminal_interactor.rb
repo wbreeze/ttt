@@ -41,6 +41,10 @@ class TerminalInteractor
     end
   end
 
+  def move_not_valid
+    output.puts('You can\'t move there.')
+  end
+
   def thank_partner
     output.puts('Thank you for playing!')
   end

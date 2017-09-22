@@ -24,6 +24,7 @@ class MasterController
         @board.set_o(row, col)
       end
     else
+      @interact.move_not_valid
       valid = false
     end
     return valid
