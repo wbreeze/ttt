@@ -6,7 +6,7 @@ class PlayerProvider
   end
 
   def generate_next_move
-    @computer_strategy.generate_move
+    @computer_strategy.generate_move(@board)
   end
 
   def prompt_and_parse
