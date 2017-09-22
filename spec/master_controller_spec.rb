@@ -5,6 +5,9 @@ RSpec.describe MasterController do
 
   # mock setup can't be done in before blocks
   def setup_interact
+    allow(@interact).to receive('get_player_move').and_return({
+      :token => :bye
+    })
     allow(@interact).to receive('thank_partner')
     allow(@interact).to receive('did_quit')
     allow(@interact).to receive('goodbye')
@@ -32,6 +35,19 @@ RSpec.describe MasterController do
     expect(@interact).to receive('get_player_role_preference').and_return(:second_mover)
     mc = MasterController.new(@interact)
     expect(mc).to receive('play_the_game').with(instance_of(PlayerIsO)).and_call_original
+    mc.play
+    expect(@interact).to have_received('did_quit')
+  end
+
+  it 'Accepts a move' do
+    setup_interact
+    allow(@interact).to receive('get_player_role_preference').and_return(:first_mover)
+    expect(@interact).to receive('get_player_move').and_return({
+      :token => :pos,
+      row: 0,
+      col: 0
+    })
+    mc = MasterController.new(@interact)
     mc.play
     expect(@interact).to have_received('did_quit')
   end

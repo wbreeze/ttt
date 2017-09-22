@@ -21,8 +21,8 @@ class GameState
         #   failure to process a payment is an example
         # we use on_after for things that must happen when the transition
         #   has occurred
-        on_before(:x_placed) { |event, row, col| target.check_valid_move(row, col) }
-        on_before(:o_placed) { |event, row, col| target.check_valid_move(row, col) }
+        on_before(:x_placed) { |event, row, col| target.check_and_play(:x, row, col) }
+        on_before(:o_placed) { |event, row, col| target.check_and_play(:o, row, col) }
         on_transition(:saw_x) { |event| target.check_game_state }
         on_transition(:saw_o) { |event| target.check_game_state }
         on_transition(:finish) { |event| target.game_over }

@@ -1,4 +1,5 @@
 class RandomMoveStrategy
-  def get_next_move
+  def generate_move
+    return { :token => :pos, row: 0, col: 0 }
   end
 end
