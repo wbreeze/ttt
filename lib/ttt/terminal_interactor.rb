@@ -24,7 +24,7 @@ class TerminalInteractor
   end
 
   def get_player_move(board)
-    output.puts @board_display.render_text(board)
+    output.puts "\n#{@board_display.render_text(board)}\n"
     tkn = get_response('Where do you want to move?', [:pos])
     return { token: tkn, row: @cp.row, col: @cp.col }
   end
@@ -33,9 +33,9 @@ class TerminalInteractor
     output.puts @board_display.render_text(board)
     case board.state
     when :win_x
-      output.puts 'X is the winner!'
+      output.puts 'X has won!'
     when :win_o
-      output.puts 'O is the winner!'
+      output.puts 'O has won!'
     when :draw
       output.puts 'That was a draw.'
     end

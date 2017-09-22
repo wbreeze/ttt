@@ -29,13 +29,13 @@ class BoardPretty
   ###
 
   def draw_col_labels
-    l = '     '
+    l = '        '
     col_labels.each { |c| l << (" #{c}  ") }
     return l
   end
 
   def draw_separator
-    '    +---+---+---+'
+    '       +---+---+---+'
   end
 
   def draw_row(board, r)
@@ -43,7 +43,7 @@ class BoardPretty
     if (0 <= r && r < row_labels.length)
       label = row_labels[r]
     end
-    l = " #{label}  |"
+    l = "    #{label}  |"
     (0..2).each { |c| l << " #{PLACE_LABELS[board.get(r,c)]} |" }
     return l
   end
