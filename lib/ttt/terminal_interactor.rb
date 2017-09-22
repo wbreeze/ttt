@@ -7,6 +7,7 @@ class TerminalInteractor
     self.input = input
     self.output = output
     @cp = CommandParser.new
+    @board_display = BoardPretty.new(@cp.row_labels, @cp.col_labels)
     @did_quit = false
   end
 
@@ -22,9 +23,22 @@ class TerminalInteractor
     end
   end
 
-  def get_player_move
+  def get_player_move(board)
+    output.puts @board_display.render_text(board)
     tkn = get_response('Where do you want to move?', [:pos])
     return { token: tkn, row: @cp.row, col: @cp.col }
+  end
+
+  def announce_result(board)
+    output.puts @board_display.render_text(board)
+    case board.state
+    when :win_x
+      output.puts 'X is the winner!'
+    when :win_o
+      output.puts 'O is the winner!'
+    when :draw
+      output.puts 'That was a draw.'
+    end
   end
 
   def thank_partner

@@ -1,7 +1,8 @@
 class PlayerProvider
-  def initialize(computer_strategy, interact)
+  def initialize(computer_strategy, interact, board)
     @computer_strategy = computer_strategy
     @player = interact
+    @board = board
   end
 
   def generate_next_move
@@ -9,13 +10,13 @@ class PlayerProvider
   end
 
   def prompt_and_parse
-    @player.get_player_move
+    @player.get_player_move(@board)
   end
 end
 
 class PlayerIsO < PlayerProvider
-  def initialize(computer_strategy, interact)
-    super(computer_strategy, interact)
+  def initialize(computer_strategy, interact, board)
+    super(computer_strategy, interact, board)
   end
 
   def get_X_move
@@ -28,8 +29,8 @@ class PlayerIsO < PlayerProvider
 end
 
 class PlayerIsX < PlayerProvider
-  def initialize(computer_strategy, interact)
-    super(computer_strategy, interact)
+  def initialize(computer_strategy, interact, board)
+    super(computer_strategy, interact, board)
   end
 
   def get_X_move

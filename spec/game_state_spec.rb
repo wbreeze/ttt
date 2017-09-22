@@ -7,7 +7,7 @@ RSpec.describe GameState do
   before :each do
     @mc = double('mc')
     allow(@mc).to receive(:check_game_state)
-    allow(@mc).to receive(:check_valid_move).and_return true
+    allow(@mc).to receive(:check_and_play).and_return true
   end
 
   context 'callbacks on move' do
@@ -17,7 +17,7 @@ RSpec.describe GameState do
 
     it 'checks for valid move' do
       @gs.x_placed(0, 1)
-      expect(@mc).to have_received(:check_valid_move).with(0, 1)
+      expect(@mc).to have_received(:check_and_play).with(:x, 0, 1)
     end
 
     it 'checks game state after move' do
@@ -35,7 +35,7 @@ RSpec.describe GameState do
     it 'does not allow x to move twice' do
       gs = GameState.new_game(@mc, :saw_x)
       gs.x_placed(0,1)
-      expect(@mc).to have_received(:check_valid_move)
+      expect(@mc).to have_received(:check_and_play)
       expect(@mc).to have_received(:apply_exception)
       expect(@mc).to_not have_received(:check_game_state)
       expect(gs.current).to eq :saw_x
@@ -44,7 +44,7 @@ RSpec.describe GameState do
     it 'does not allow o to move twice' do
       gs = GameState.new_game(@mc, :saw_o)
       gs.o_placed(0,1)
-      expect(@mc).to have_received(:check_valid_move)
+      expect(@mc).to have_received(:check_and_play)
       expect(@mc).to have_received(:apply_exception)
       expect(@mc).to_not have_received(:check_game_state)
       expect(gs.current).to eq :saw_o

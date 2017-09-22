@@ -30,7 +30,8 @@ RSpec.describe TerminalInteractor do
 
   it 'captures a move' do
     @ioe.input_list = ['A1','q']
-    pos = (@ti.get_player_move)
+    board = GameBoard.new
+    pos = (@ti.get_player_move(board))
     expect(pos).to be_a_kind_of(Hash)
     expect(pos[:token]).to eq :pos
     expect(pos[:row]).to eq 0
@@ -39,7 +40,7 @@ RSpec.describe TerminalInteractor do
 
   it 'shows help' do
     @ioe.input_list = ['h','A1','q']
-    @ti.get_player_move
-    expect(@ioe.output_list[1]).to match(/You can always type 'h' to get this help./)
+    @ti.get_player_move(GameBoard.new)
+    expect(@ioe.output_list[2]).to match(/You can always type 'h' to get this help./)
   end
 end

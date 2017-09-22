@@ -1,8 +1,8 @@
 class MasterController
   def initialize(interact = nil)
+    @gs = GameState.new_game(self)
     @interact = interact || TerminalInteractor.new
     @board = GameBoard.new
-    @gs = GameState.new_game(self)
   end
 
   # entry point for game play
@@ -36,7 +36,7 @@ class MasterController
   end
 
   def game_over
-    @interact.announce_result
+    @interact.announce_result(@board)
   end
 
   ###
@@ -49,9 +49,9 @@ class MasterController
     move_generator = nil
     role = @interact.get_player_role_preference
     if (role == :first_mover)
-      move_generator = PlayerIsX.new(strategy, @interact)
+      move_generator = PlayerIsX.new(strategy, @interact, @board)
     elsif (role == :second_mover)
-      move_generator = PlayerIsO.new(strategy, @interact)
+      move_generator = PlayerIsO.new(strategy, @interact, @board)
     else
       play = false
     end
