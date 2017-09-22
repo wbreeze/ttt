@@ -24,13 +24,13 @@ class TerminalInteractor
   end
 
   def get_player_move(board)
-    output.puts "\n#{@board_display.render_text(board)}\n"
+    display_board(board)
     tkn = get_response('Where do you want to move?', [:pos])
     return { token: tkn, row: @cp.row, col: @cp.col }
   end
 
   def announce_result(board)
-    output.puts @board_display.render_text(board)
+    display_board(board)
     case board.state
     when :win_x
       output.puts 'X has won!'
@@ -56,6 +56,10 @@ class TerminalInteractor
   ###
   private
   ###
+
+  def display_board(board)
+    output.puts "\n#{@board_display.render_text(board)}\n"
+  end
 
   # repeat the prompt and response until valid token or exit
   # sets did_quit
