@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.summary = 'Tic Tac Toe'
   s.authors = ['Douglas Lovell']
   s.email = ['doug@wbreeze.com']
-  s.files = Dir['{lib}/**/*.rb', 'LICENSE', '*.md']
+  s.files = Dir['{lib}/**/*.rb', '{spec}/**/*.rb', 'LICENSE', '*.md']
   s.require_path = 'lib'
   s.homepage = 'https://gitlab.com/dclovell/ttt'
   s.license = 'Nonstandard'
