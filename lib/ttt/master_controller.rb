@@ -10,7 +10,8 @@ class MasterController
     computer_strategy = RandomMoveStrategy.new
     playing = true
     while playing
-      playing = start_game(computer_strategy)
+      start_game(computer_strategy)
+      playing = !@interact.did_quit
     end
     @interact.goodbye
   end
@@ -46,20 +47,16 @@ class MasterController
 
   # start one game
   def start_game(strategy)
-    play = true
     move_generator = nil
     role = @interact.get_player_role_preference
     if (role == :first_mover)
       move_generator = PlayerIsX.new(strategy, @interact, @board)
     elsif (role == :second_mover)
       move_generator = PlayerIsO.new(strategy, @interact, @board)
-    else
-      play = false
     end
-    if play
-      play = play_the_game(move_generator)
+    if move_generator
+      play_the_game(move_generator)
     end
-    play
   end
 
   # game running with selected move generator
@@ -71,7 +68,6 @@ class MasterController
       playing = advance_game_state(move_generator)
     end
     @interact.thank_partner
-    @interact.did_quit
   end
 
   # play a move
