@@ -62,6 +62,14 @@ You can always type 'q' to quit or exit, stop, leave.
     end
   end
 
+  def row_labels
+    [ '1', '2', '3' ]
+  end
+
+  def col_labels
+    [ 'A', 'B', 'C' ]
+  end
+
   ###
   private
   ###
