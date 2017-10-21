@@ -1,14 +1,12 @@
 class TerminalInteractor
 
   attr_accessor :input, :output
-  attr_reader :did_quit
 
   def initialize(input = $stdin, output = $stdout)
     self.input = input
     self.output = output
     @cp = CommandParser.new
     @board_display = BoardPretty.new(@cp.row_labels, @cp.col_labels)
-    @did_quit = false
   end
 
   def get_player_role_preference
@@ -62,9 +60,7 @@ class TerminalInteractor
   end
 
   # repeat the prompt and response until valid token or exit
-  # sets did_quit
   def get_response(prompt, valid_tokens)
-    @did_quit = false
     valid = false
     until valid
       output.puts(prompt)
@@ -76,7 +72,6 @@ class TerminalInteractor
           output.puts(@cp.help_text)
         elsif tkn == :bye
           valid = true
-          @did_quit = true
         else
           output.puts("Type 'h' and press enter for help.\n")
         end

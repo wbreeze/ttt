@@ -9,7 +9,6 @@ RSpec.describe MasterController do
       :token => :bye
     })
     allow(@interact).to receive('thank_partner')
-    allow(@interact).to receive('did_quit')
     allow(@interact).to receive('goodbye')
   end
 
@@ -25,18 +24,16 @@ RSpec.describe MasterController do
     setup_interact
     expect(@interact).to receive('get_player_role_preference').and_return(:first_mover)
     mc = MasterController.new(@interact)
-    expect(mc).to receive('play_the_game').with(instance_of(PlayerIsX)).and_call_original
     mc.play
-    expect(@interact).to have_received('did_quit')
+    expect(@interact).to have_received('goodbye')
   end
 
   it 'Accepts user as O' do
     setup_interact
     expect(@interact).to receive('get_player_role_preference').and_return(:second_mover)
     mc = MasterController.new(@interact)
-    expect(mc).to receive('play_the_game').with(instance_of(PlayerIsO)).and_call_original
     mc.play
-    expect(@interact).to have_received('did_quit')
+    expect(@interact).to have_received('goodbye')
   end
 
   it 'Accepts a move' do
@@ -49,6 +46,6 @@ RSpec.describe MasterController do
     })
     mc = MasterController.new(@interact)
     mc.play
-    expect(@interact).to have_received('did_quit')
+    expect(@interact).to have_received('goodbye')
   end
 end
