@@ -1,6 +1,6 @@
-RSpec.describe GameState do
+RSpec.describe TttDclovell::GameState do
   it 'initializes in limbo by default' do
-    gs = GameState.new_game(nil)
+    gs = TttDclovell::GameState.new_game(nil)
     expect(gs.current).to eq :limbo
   end
 
@@ -13,12 +13,12 @@ RSpec.describe GameState do
 
   context 'calls get_moving on select player' do
     it 'gets moving with first mover select' do
-      @gs = GameState.new_game(@mc)
+      @gs = TttDclovell::GameState.new_game(@mc)
       @gs.role_selected(:first_mover)
       expect(@mc).to have_received(:get_moving)
     end
     it 'gets moving with second mover select' do
-      @gs = GameState.new_game(@mc)
+      @gs = TttDclovell::GameState.new_game(@mc)
       @gs.role_selected(:second_mover)
       expect(@mc).to have_received(:get_moving)
     end
@@ -26,7 +26,7 @@ RSpec.describe GameState do
 
   context 'callbacks on move' do
     before :each do
-      @gs = GameState.new_game(@mc)
+      @gs = TttDclovell::GameState.new_game(@mc)
       @gs.role_selected(:first_mover)
     end
 
@@ -48,7 +48,7 @@ RSpec.describe GameState do
     end
 
     it 'does not allow x to move twice' do
-      gs = GameState.new_game(@mc, :saw_x)
+      gs = TttDclovell::GameState.new_game(@mc, :saw_x)
       gs.x_placed(0,1)
       expect(@mc).not_to have_received(:check_and_play)
       expect(@mc).to have_received(:apply_exception)
@@ -57,7 +57,7 @@ RSpec.describe GameState do
     end
 
     it 'does not allow o to move twice' do
-      gs = GameState.new_game(@mc, :saw_o)
+      gs = TttDclovell::GameState.new_game(@mc, :saw_o)
       gs.o_placed(0,1)
       expect(@mc).not_to have_received(:check_and_play)
       expect(@mc).to have_received(:apply_exception)

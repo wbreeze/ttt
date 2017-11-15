@@ -1,6 +1,6 @@
-RSpec.describe 'CammandParser' do
-  before :all do
-    @cp = CommandParser.new
+RSpec.describe TttDclovell::CommandParser do
+  before :context do
+    @cp = TttDclovell::CommandParser.new
   end
 
   it 'recognizes help' do
@@ -93,16 +93,16 @@ RSpec.describe 'CammandParser' do
 
   it 'recognizes invalid col' do
     expect(@cp.parse("D1")).to eq :unrecognized
-    expect(@cp.col).to eq CommandParser::INVALID_POSITION
+    expect(@cp.col).to eq TttDclovell::CommandParser::INVALID_POSITION
     expect(@cp.parse("X1")).to eq :unrecognized
-    expect(@cp.col).to eq CommandParser::INVALID_POSITION
+    expect(@cp.col).to eq TttDclovell::CommandParser::INVALID_POSITION
   end
 
   it 'recognizes invalid row' do
     expect(@cp.parse("A4")).to eq :unrecognized
-    expect(@cp.row).to eq CommandParser::INVALID_POSITION
+    expect(@cp.row).to eq TttDclovell::CommandParser::INVALID_POSITION
     expect(@cp.parse("A10")).to eq :unrecognized
-    expect(@cp.row).to eq CommandParser::INVALID_POSITION
+    expect(@cp.row).to eq TttDclovell::CommandParser::INVALID_POSITION
   end
 
   it 'rejects bad position' do
@@ -115,14 +115,14 @@ RSpec.describe 'CammandParser' do
     expect(@cp.row).to eq 0
     expect(@cp.col).to eq 0
     expect(@cp.parse("n")).to eq :no
-    expect(@cp.row).to eq CommandParser::INVALID_POSITION
-    expect(@cp.col).to eq CommandParser::INVALID_POSITION
+    expect(@cp.row).to eq TttDclovell::CommandParser::INVALID_POSITION
+    expect(@cp.col).to eq TttDclovell::CommandParser::INVALID_POSITION
   end
 
   it 'sets pos on initialization' do
-    ncp = CommandParser.new
-    expect(ncp.row).to eq CommandParser::INVALID_POSITION
-    expect(ncp.col).to eq CommandParser::INVALID_POSITION
+    ncp = TttDclovell::CommandParser.new
+    expect(ncp.row).to eq TttDclovell::CommandParser::INVALID_POSITION
+    expect(ncp.col).to eq TttDclovell::CommandParser::INVALID_POSITION
   end
 
   it 'produces help text' do

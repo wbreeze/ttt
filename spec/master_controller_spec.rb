@@ -1,5 +1,5 @@
-RSpec.describe MasterController do
-  before :each do
+RSpec.describe TttDclovell::MasterController do
+  before :example do
     @interact = instance_double('TerminalInteractor')
   end
 
@@ -15,7 +15,7 @@ RSpec.describe MasterController do
   it 'Quits if quit given at first prompt' do
     setup_interact
     expect(@interact).to receive('get_player_role_preference').and_return(:bye)
-    mc = MasterController.new(@interact)
+    mc = TttDclovell::MasterController.new(@interact)
     mc.play
     expect(@interact).to have_received('goodbye')
   end
@@ -23,7 +23,7 @@ RSpec.describe MasterController do
   it 'Accepts user as X' do
     setup_interact
     expect(@interact).to receive('get_player_role_preference').and_return(:first_mover)
-    mc = MasterController.new(@interact)
+    mc = TttDclovell::MasterController.new(@interact)
     mc.play
     expect(@interact).to have_received('goodbye')
   end
@@ -31,7 +31,7 @@ RSpec.describe MasterController do
   it 'Accepts user as O' do
     setup_interact
     expect(@interact).to receive('get_player_role_preference').and_return(:second_mover)
-    mc = MasterController.new(@interact)
+    mc = TttDclovell::MasterController.new(@interact)
     mc.play
     expect(@interact).to have_received('goodbye')
   end
@@ -44,7 +44,7 @@ RSpec.describe MasterController do
       row: 0,
       col: 0
     })
-    mc = MasterController.new(@interact)
+    mc = TttDclovell::MasterController.new(@interact)
     mc.play
     expect(@interact).to have_received('goodbye')
   end

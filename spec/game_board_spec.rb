@@ -1,12 +1,12 @@
 require 'json'
 
-RSpec.describe 'GameBoard' do
+RSpec.describe TttDclovell::GameBoard do
   before :all do
     @range = (0..2)
   end
 
   before :each do
-    @gb = GameBoard.new
+    @gb = TttDclovell::GameBoard.new
   end
 
   it 'records x at a row column' do

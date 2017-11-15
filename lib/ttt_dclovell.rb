@@ -1,9 +1,11 @@
-Dir[File.expand_path("../ttt/**/*.rb", __FILE__)].each { |file| require file }
-class TttDclovell
-  VERSION = '0.5.0'
+require 'ttt_dclovell/version'
+require 'ttt_dclovell/master_controller'
 
-  def self.play
-    controller = MasterController.new
-    controller.play
+module TttDclovell
+  class TicTacToe
+    def self.play
+      controller = MasterController.new
+      controller.play
+    end
   end
 end

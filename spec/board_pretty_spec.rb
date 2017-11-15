@@ -1,11 +1,11 @@
-RSpec.describe BoardPretty do
+RSpec.describe TttDclovell::BoardPretty do
   before :each do
-    @board = GameBoard.new
+    @board = TttDclovell::GameBoard.new
     @labels = {
       row: ['1', '2', '3'],
       col: ['A', 'B', 'C']
     }
-    @display = BoardPretty.new(@labels[:row], @labels[:col])
+    @display = TttDclovell::BoardPretty.new(@labels[:row], @labels[:col])
   end
 
   it 'can display an empty board' do

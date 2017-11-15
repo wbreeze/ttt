@@ -1,7 +1,7 @@
-RSpec.describe RandomMoveStrategy do
-  before :each do
-    @strat = RandomMoveStrategy.new
-    @gb = GameBoard.new
+RSpec.describe TttDclovell::RandomMoveStrategy do
+  before :example do
+    @strat = TttDclovell::RandomMoveStrategy.new
+    @gb = TttDclovell::GameBoard.new
     [[0,0],[0,2],[1,0],[1,2],[2,1]].each do |p|
       @gb.set_x(p[0],p[1])
     end

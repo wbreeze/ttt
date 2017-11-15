@@ -1,4 +1,4 @@
-RSpec.describe TerminalInteractor do
+RSpec.describe TttDclovell::TerminalInteractor do
   class IOEmulator
     attr_accessor :input_list
     attr_reader :output_list
@@ -15,7 +15,7 @@ RSpec.describe TerminalInteractor do
 
   before :each do
     @ioe = IOEmulator.new
-    @ti = TerminalInteractor.new(@ioe, @ioe)
+    @ti = TttDclovell::TerminalInteractor.new(@ioe, @ioe)
   end
 
   it 'captures desire to be X' do
@@ -30,7 +30,7 @@ RSpec.describe TerminalInteractor do
 
   it 'captures a move' do
     @ioe.input_list = ['A1','q']
-    board = GameBoard.new
+    board = TttDclovell::GameBoard.new
     pos = (@ti.get_player_move(board))
     expect(pos).to be_a_kind_of(Hash)
     expect(pos[:token]).to eq :pos
@@ -40,7 +40,7 @@ RSpec.describe TerminalInteractor do
 
   it 'shows help' do
     @ioe.input_list = ['h','A1','q']
-    @ti.get_player_move(GameBoard.new)
+    @ti.get_player_move(TttDclovell::GameBoard.new)
     expect(@ioe.output_list[2]).to match(/You can always type 'h' to get this help./)
   end
 end
