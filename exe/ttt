@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require 'ttt_dclovell'
+TttDclovell::TicTacToe.play

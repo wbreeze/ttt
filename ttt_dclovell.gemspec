@@ -1,17 +1,20 @@
 # coding: utf-8
-require File.expand_path('../lib/ttt_dclovell', __FILE__)
+lib = File.expand_path("../lib", __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require "ttt_dclovell/version"
 
 Gem::Specification.new do |s|
   s.name = 'ttt_dclovell'
   s.version = TttDclovell::VERSION
-  s.date = '2017-09-22'
   s.summary = 'Tic Tac Toe'
   s.authors = ['Douglas Lovell']
   s.email = ['doug@wbreeze.com']
-  s.files = Dir['{lib}/**/*.rb', '{spec}/**/*.rb', 'LICENSE', '*.md']
+  s.files = Dir['{lib}/**/*.rb', 'LICENSE', '*.md']
   s.require_path = 'lib'
-  s.homepage = 'https://gitlab.com/dclovell/ttt'
-  s.license = 'Nonstandard'
+  s.homepage = 'https://github.com/wbreeze/ttt'
+  s.license = 'GPL-3.0'
+  s.bindir = 'exe'
+  s.executables = 'ttt'
 
   # app dependencies
   s.add_runtime_dependency 'finite_machine', '~> 0.11.0'
