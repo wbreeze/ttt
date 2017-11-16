@@ -19,8 +19,9 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'finite_machine', '~> 0.11.0'
 
   # dev dependencies
-  s.add_development_dependency 'bundler', '~> 1.15'
+  s.add_development_dependency 'bundler', '~> 1.16.0'
   s.add_development_dependency 'rspec', '~> 3.0'
+  s.add_development_dependency 'simplecov', '~> 0.15.0'
 
   # Prevent pushing this gem to RubyGems.org.
   # To allow pushes either set the 'allowed_push_host'
