@@ -7,19 +7,9 @@ Play Tic-tac-toe from the terminal, against the computer.
 In order to run the program, from a command line with Ruby
 and RubyGems available:
 
+    > gem build ttt_dclovell.gemspec
     > gem install ttt_dclovell-#.#.#.gem
-    > irb
-    irb> require 'ttt_dclovell'
-    => true
-    irb> TttDclovell.play
-
-### Source
-
-In order to view the source:
-
-    > gem unpack ttt_dclovell-#.#.#.gem
-
-will leave complete source in directory, `ttt_dclovell-#.#.#`.
+    > ttt
 
 ### Original task description
 
