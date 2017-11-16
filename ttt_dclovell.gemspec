@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.homepage = 'https://github.com/wbreeze/ttt'
   s.license = 'GPL-3.0'
-  s.bindir = 'exe'
+  s.bindir = 'bin'
   s.executables = 'ttt'
 
   # app dependencies
