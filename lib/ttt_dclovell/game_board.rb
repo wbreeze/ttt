@@ -1,6 +1,7 @@
 require 'json'
 
 module TttDclovell
+  # Model the Tic Tac Toe game board
   class GameBoard
     def initialize
       @state = Array.new(9)
@@ -12,31 +13,31 @@ module TttDclovell
     end
 
     def get(row, col)
-      @state[pos(row,col)]
+      @state[pos(row, col)]
     end
 
-    def set_o(row,col)
-      @state[pos(row,col)] = :o
+    def set_o(row, col)
+      @state[pos(row, col)] = :o
     end
 
-    def set_x(row,col)
-      @state[pos(row,col)] = :x
+    def set_x(row, col)
+      @state[pos(row, col)] = :x
     end
 
-    def clear(row,col)
-      @state[pos(row,col)] = :n
+    def clear(row, col)
+      @state[pos(row, col)] = :n
     end
 
-    def is_complete
+    def complete?
       [:draw, :win_x, :win_o].include? state
     end
 
     def state
-      if has_win_x
+      if win_x?
         :win_x
-      elsif has_win_o
+      elsif win_o?
         :win_o
-      elsif is_full
+      elsif full?
         :draw
       else
         :incomplete
@@ -54,7 +55,7 @@ module TttDclovell
           ' '
         end
       end
-      JSON.fast_generate({ game_state: pretty })
+      JSON.fast_generate(game_state: pretty)
     end
 
     private
@@ -63,10 +64,11 @@ module TttDclovell
       row * 3 + col
     end
 
-    def has_win(xo)
-      wp = [[0,3,6],[1,4,7],[2,5,8],
-       [0,1,2],[3,4,5],[6,7,8],
-       [0,4,8],[2,4,6]
+    def win?(xo)
+      wp = [
+        [0, 3, 6], [1, 4, 7], [2, 5, 8],
+        [0, 1, 2], [3, 4, 5], [6, 7, 8],
+        [0, 4, 8], [2, 4, 6]
       ].find do |line|
         line.reduce(true) do |m, p|
           m && (@state[p] == xo)
@@ -75,15 +77,15 @@ module TttDclovell
       !wp.nil?
     end
 
-    def has_win_x
-      has_win(:x)
+    def win_x?
+      win?(:x)
     end
 
-    def has_win_o
-      has_win(:o)
+    def win_o?
+      win?(:o)
     end
 
-    def is_full
+    def full?
       @state.inject(true) do |m, v|
         m && (v != :n)
       end

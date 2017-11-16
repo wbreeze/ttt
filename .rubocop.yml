@@ -1,10 +1,18 @@
+Layout/AlignHash:
+  Enabled: false
+Layout/MultilineMethodCallBraceLayout:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+Metrics/MethodLength:
+  Max: 20
 Style/BlockLength:
   Exclude:
     - 'Rakefile'
     - 'spec/**/*_spec.rb'
-Layout/MultilineMethodCallBraceLayout:
-  Exclude:
-    - 'spec/**/*_spec.rb'
+Style/TernaryParentheses:
+  EnforcedStyle: require_parentheses_when_complex
+Style/SymbolArray:
+  MinSize: 6
 Style/YodaCondition:
   EnforcedStyle: equality_operators_only
 Style/FrozenStringLiteralComment:

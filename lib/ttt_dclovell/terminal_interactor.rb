@@ -2,6 +2,8 @@ require 'ttt_dclovell/board_pretty'
 require 'ttt_dclovell/command_parser'
 
 module TttDclovell
+  # Interact with a person on a terminal command line
+  # rubocop:disable Naming/AccessorMethodName
   class TerminalInteractor
     attr_accessor :input, :output
 
@@ -13,8 +15,10 @@ module TttDclovell
     end
 
     def get_player_role_preference
-      tkn = get_response('Which player do you want to be? X or O?', [:be_x, :be_o])
-      return case tkn
+      tkn = get_response(
+        'Which player do you want to be? X or O?', [:be_x, :be_o]
+      )
+      case tkn
       when :be_x
         :first_mover
       when :be_o
@@ -27,7 +31,7 @@ module TttDclovell
     def get_player_move(board)
       display_board(board)
       tkn = get_response('Where do you want to move?', [:pos])
-      return { token: tkn, row: @cp.row, col: @cp.col }
+      { token: tkn, row: @cp.row, col: @cp.col }
     end
 
     def announce_result(board)
@@ -62,23 +66,21 @@ module TttDclovell
 
     # repeat the prompt and response until valid token or exit
     def get_response(prompt, valid_tokens)
+      valid_tokens << :bye # it's always okay to leave
       valid = false
       until valid
         output.puts(prompt)
-        resp = input.gets
-        tkn = @cp.parse(resp)
+        tkn = @cp.parse(input.gets)
         valid = valid_tokens.include? tkn
         unless valid
           if tkn == :help
             output.puts(@cp.help_text)
-          elsif tkn == :bye
-            valid = true
           else
             output.puts("Type 'h' and press enter for help.\n")
           end
         end
       end
-      return tkn
+      tkn
     end
   end
 end

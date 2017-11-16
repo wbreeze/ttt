@@ -1,4 +1,6 @@
 module TttDclovell
+  # Generate a move at random
+  # This is not a very smart tic tac toe player
   class RandomMoveStrategy
     def initialize(seed = nil)
       seed ||= Random.new_seed
@@ -7,10 +9,11 @@ module TttDclovell
 
     def generate_move(board)
       p = @rand.rand(9)
-      until (:n == board.get(row(p), col(p)))
+      # rubocop: disable Style/MultilineIfModifier, Style/WhileUntilModifier
+      until board.get(row(p), col(p)) == :n
         p = (p + 1) % 9
-      end unless board.is_complete
-      return { :token => :pos, row: row(p), col: col(p) }
+      end unless board.complete?
+      { :token => :pos, row: row(p), col: col(p) }
     end
 
     private

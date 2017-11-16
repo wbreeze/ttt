@@ -1,4 +1,5 @@
 module TttDclovell
+  # Draw the Tic Tac Toe board
   class BoardPretty
     attr_accessor :row_labels, :col_labels
 
@@ -6,7 +7,7 @@ module TttDclovell
       x: 'X',
       o: 'O',
       n: ' '
-    }
+    }.freeze
 
     def initialize(rlabels = [], clabels = [])
       @row_labels = rlabels
@@ -28,9 +29,9 @@ module TttDclovell
     private
 
     def draw_col_labels
-      l = '        '
-      col_labels.each { |c| l << (" #{c}  ") }
-      return l
+      line = '        '
+      col_labels.each { |c| line << " #{c}  " }
+      line
     end
 
     def draw_separator
@@ -38,13 +39,10 @@ module TttDclovell
     end
 
     def draw_row(board, r)
-      label = r
-      if (0 <= r && r < row_labels.length)
-        label = row_labels[r]
-      end
-      l = "    #{label}  |"
-      (0..2).each { |c| l << " #{PLACE_LABELS[board.get(r,c)]} |" }
-      return l
+      label = (0 <= r && r < row_labels.length) ? row_labels[r] : r
+      line = "    #{label}  |"
+      (0..2).each { |c| line << " #{PLACE_LABELS[board.get(r, c)]} |" }
+      line
     end
   end
 end

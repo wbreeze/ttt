@@ -4,11 +4,11 @@ require 'json'
 # rubocop:disable Layout/SpaceInsideBrackets
 # rubocop:disable Style/For
 RSpec.describe TttDclovell::GameBoard do
-  before :example do
+  before :context do
     @range = (0..2)
   end
 
-  before :context do
+  before :example do
     @gb = TttDclovell::GameBoard.new
   end
 
@@ -78,7 +78,7 @@ RSpec.describe TttDclovell::GameBoard do
     @gb.set_x(0,1)
     @gb.set_o(1,1)
     expect(@gb.state).to eq :incomplete
-    expect(@gb.is_complete).to be false
+    expect(@gb.complete?).to be false
   end
 
   it 'recognizes a draw' do
@@ -89,7 +89,7 @@ RSpec.describe TttDclovell::GameBoard do
       @gb.set_o(p[0],p[1])
     end
     expect(@gb.state).to eq :draw
-    expect(@gb.is_complete).to be true
+    expect(@gb.complete?).to be true
   end
 
   it 'recognizes success of x' do
@@ -100,7 +100,7 @@ RSpec.describe TttDclovell::GameBoard do
       @gb.set_o(p[0],p[1])
     end
     expect(@gb.state).to eq :win_x
-    expect(@gb.is_complete).to be true
+    expect(@gb.complete?).to be true
   end
 
   it 'recognizes success of o' do
@@ -111,7 +111,7 @@ RSpec.describe TttDclovell::GameBoard do
       @gb.set_o(p[0],p[1])
     end
     expect(@gb.state).to eq :win_o
-    expect(@gb.is_complete).to be true
+    expect(@gb.complete?).to be true
   end
 
   it 'recognizes column one win' do
@@ -122,7 +122,7 @@ RSpec.describe TttDclovell::GameBoard do
       @gb.set_o(p[0],p[1])
     end
     expect(@gb.state).to eq :win_x
-    expect(@gb.is_complete).to be true
+    expect(@gb.complete?).to be true
   end
 
   it 'recognizes column two win' do
@@ -133,7 +133,7 @@ RSpec.describe TttDclovell::GameBoard do
       @gb.set_o(p[0],p[1])
     end
     expect(@gb.state).to eq :win_x
-    expect(@gb.is_complete).to be true
+    expect(@gb.complete?).to be true
   end
 
   it 'recognizes column three win' do
@@ -144,7 +144,7 @@ RSpec.describe TttDclovell::GameBoard do
       @gb.set_o(p[0],p[1])
     end
     expect(@gb.state).to eq :win_x
-    expect(@gb.is_complete).to be true
+    expect(@gb.complete?).to be true
   end
 
   it 'recognizes row one win' do
@@ -155,7 +155,7 @@ RSpec.describe TttDclovell::GameBoard do
       @gb.set_o(p[0],p[1])
     end
     expect(@gb.state).to eq :win_x
-    expect(@gb.is_complete).to be true
+    expect(@gb.complete?).to be true
   end
 
   it 'recognizes row two win' do
@@ -166,7 +166,7 @@ RSpec.describe TttDclovell::GameBoard do
       @gb.set_o(p[0],p[1])
     end
     expect(@gb.state).to eq :win_x
-    expect(@gb.is_complete).to be true
+    expect(@gb.complete?).to be true
   end
 
   it 'recognizes row three win' do
@@ -177,7 +177,7 @@ RSpec.describe TttDclovell::GameBoard do
       @gb.set_o(p[0],p[1])
     end
     expect(@gb.state).to eq :win_x
-    expect(@gb.is_complete).to be true
+    expect(@gb.complete?).to be true
   end
 
   it 'recognizes backward diagonal win' do
@@ -188,7 +188,7 @@ RSpec.describe TttDclovell::GameBoard do
       @gb.set_o(p[0],p[1])
     end
     expect(@gb.state).to eq :win_x
-    expect(@gb.is_complete).to be true
+    expect(@gb.complete?).to be true
   end
 
   it 'recognizes forward diagonal win' do
@@ -199,7 +199,7 @@ RSpec.describe TttDclovell::GameBoard do
       @gb.set_o(p[0],p[1])
     end
     expect(@gb.state).to eq :win_x
-    expect(@gb.is_complete).to be true
+    expect(@gb.complete?).to be true
   end
 
   it 'provides a compact representation' do

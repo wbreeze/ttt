@@ -5,6 +5,8 @@ require 'ttt_dclovell/random_move_strategy'
 require 'ttt_dclovell/terminal_interactor'
 
 module TttDclovell
+  # Coordinate activity of game_state and game_board
+  # along with interactions for two players
   class MasterController
     def initialize(interact = nil)
       @gs = GameState.new_game(self)
@@ -21,34 +23,31 @@ module TttDclovell
 
     def get_moving(role)
       @move_generator = nil
-      if (role == :first_mover)
+      if role == :first_mover
         @move_generator = PlayerIsX.new(@computer_strategy, @interact, @board)
-      elsif (role == :second_mover)
+      elsif role == :second_mover
         @move_generator = PlayerIsO.new(@computer_strategy, @interact, @board)
-      elsif (role == :bye)
+      elsif role == :bye
         @gs.bye
       end
     end
 
     def check_and_play(role, row, col)
-      valid = true
       if @board.get(row, col) == :n
         if role == :x
           @board.set_x(row, col)
         else
           @board.set_o(row, col)
         end
+        true
       else
         @interact.move_not_valid
-        valid = false
+        false
       end
-      return valid
     end
 
     def check_game_state
-      if @board.is_complete
-        @gs.game_complete
-      end
+      @gs.game_complete if @board.complete?
     end
 
     def game_over
@@ -70,27 +69,35 @@ module TttDclovell
         role = @interact.get_player_role_preference
         @gs.role_selected(role)
       when :start, :saw_o
-        move = @move_generator.get_X_move
-        tkn = move[:token]
-        if (tkn == :pos)
-          @gs.x_placed(move[:row], move[:col])
-        else
-          @gs.bye
-        end
+        make_x_move
       when :saw_x
-        move = @move_generator.get_O_move
-        tkn = move[:token]
-        if (tkn == :pos)
-          @gs.o_placed(move[:row], move[:col])
-        else
-          @gs.bye
-        end
+        make_o_move
       when :finish
         playing = false
       else
         playing = false
       end
-      return playing
+      playing
+    end
+
+    def make_x_move
+      move = @move_generator.get_X_move
+      tkn = move[:token]
+      if tkn == :pos
+        @gs.x_placed(move[:row], move[:col])
+      else
+        @gs.bye
+      end
+    end
+
+    def make_o_move
+      move = @move_generator.get_O_move
+      tkn = move[:token]
+      if tkn == :pos
+        @gs.o_placed(move[:row], move[:col])
+      else
+        @gs.bye
+      end
     end
   end
 end

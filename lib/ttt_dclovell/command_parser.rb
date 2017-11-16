@@ -1,4 +1,7 @@
 module TttDclovell
+  # Translate command line input into tokens
+  # (It's actually a Lexer, not a Parser)
+  # rubocop:disable Metrics/MethodLength
   class CommandParser
     attr_reader :row, :col
 
@@ -9,7 +12,7 @@ module TttDclovell
     end
 
     def help_text
-      <<-EOS
+      <<-HELP
   The program will keep playing until you ask to stop.
   Type 'q' or 'exit' or 'bye' at any time to get out.
 
@@ -31,7 +34,7 @@ module TttDclovell
   If the computer doesn't understand you, it will repeat the question.
   You can always type 'h' to get this help.
   You can always type 'q' to quit or exit, stop, leave.
-      EOS
+      HELP
     end
 
     def reset_pos
@@ -39,6 +42,7 @@ module TttDclovell
       @col = INVALID_POSITION
     end
 
+    # rubocop:disable Metrics/CyclomaticComplexity
     def parse(ui)
       reset_pos
       ui.strip!
@@ -64,37 +68,23 @@ module TttDclovell
     end
 
     def row_labels
-      [ '1', '2', '3' ]
+      %w[1 2 3]
     end
 
     def col_labels
-      [ 'A', 'B', 'C' ]
+      %w[A B C]
     end
 
     private
 
     def parse_row(row_s)
-      rv = row_s.to_i - 1
-      @row = if (0 <= rv && rv <= 2)
-        rv
-      else
-        INVALID_POSITION
-      end
-      @row != INVALID_POSITION
+      @row = row_labels.index(row_s[0].upcase)
+      @row ||= INVALID_POSITION
     end
 
     def parse_col(col_s)
-      @col = case col_s[0].upcase
-      when 'A'
-        0
-      when 'B'
-        1
-      when 'C'
-        2
-      else
-        INVALID_POSITION
-      end
-      @col != INVALID_POSITION
+      @col = col_labels.index(col_s[0].upcase)
+      @col ||= INVALID_POSITION
     end
 
     def parse_pos_match(match)

@@ -1,4 +1,6 @@
 module TttDclovell
+  # rubocop:disable Naming/MethodName, Naming/AccessorMethodName
+  # Provide moves for X and O from computer or human
   class PlayerProvider
     def initialize(computer_strategy, interact, board)
       @computer_strategy = computer_strategy
@@ -15,6 +17,7 @@ module TttDclovell
     end
   end
 
+  # Player provides moves for O
   class PlayerIsO < PlayerProvider
     def initialize(computer_strategy, interact, board)
       super(computer_strategy, interact, board)
@@ -29,6 +32,7 @@ module TttDclovell
     end
   end
 
+  # Player provides moves for X
   class PlayerIsX < PlayerProvider
     def initialize(computer_strategy, interact, board)
       super(computer_strategy, interact, board)
