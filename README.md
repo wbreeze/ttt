@@ -1,13 +1,5 @@
-<a href="https://codeclimate.com/github/wbreeze/ttt/maintainability">
-  <img
-    src="https://api.codeclimate.com/v1/badges/3c33f1e12008be62024e/maintainability"
-  />
-</a>
-<a href="https://codeclimate.com/github/wbreeze/ttt/test_coverage">
-  <img
-    src="https://api.codeclimate.com/v1/badges/3c33f1e12008be62024e/test_coverage"
-  />
-</a>
+[![Build Status](https://travis-ci.org/wbreeze/ttt.svg?branch=master)](https://travis-ci.org/wbreeze/ttt)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3c33f1e12008be62024e/maintainability)](https://codeclimate.com/github/wbreeze/ttt/maintainability)
 
 ## Tic-tac-toe
 
