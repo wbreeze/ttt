@@ -49,7 +49,7 @@ RSpec.describe TttDclovell::GameState do
 
     it 'does not allow x to move twice' do
       gs = TttDclovell::GameState.new_game(@mc, :saw_x)
-      gs.x_placed(0,1)
+      gs.x_placed(0, 1)
       expect(@mc).not_to have_received(:check_and_play)
       expect(@mc).to have_received(:apply_exception)
       expect(@mc).not_to have_received(:check_game_state)
@@ -58,7 +58,7 @@ RSpec.describe TttDclovell::GameState do
 
     it 'does not allow o to move twice' do
       gs = TttDclovell::GameState.new_game(@mc, :saw_o)
-      gs.o_placed(0,1)
+      gs.o_placed(0, 1)
       expect(@mc).not_to have_received(:check_and_play)
       expect(@mc).to have_received(:apply_exception)
       expect(@mc).not_to have_received(:check_game_state)

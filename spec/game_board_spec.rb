@@ -1,11 +1,14 @@
 require 'json'
 
+# rubocop:disable Layout/SpaceAfterComma
+# rubocop:disable Layout/SpaceInsideBrackets
+# rubocop:disable Style/For
 RSpec.describe TttDclovell::GameBoard do
-  before :all do
+  before :example do
     @range = (0..2)
   end
 
-  before :each do
+  before :context do
     @gb = TttDclovell::GameBoard.new
   end
 

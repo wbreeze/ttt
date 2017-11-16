@@ -1,0 +1,13 @@
+Style/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - 'spec/**/*_spec.rb'
+Layout/MultilineMethodCallBraceLayout:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+Style/YodaCondition:
+  EnforcedStyle: equality_operators_only
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/HashSyntax:
+  Enabled: false

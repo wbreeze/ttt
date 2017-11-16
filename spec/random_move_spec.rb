@@ -1,3 +1,4 @@
+# rubocop:disable Layout/SpaceAfterComma
 RSpec.describe TttDclovell::RandomMoveStrategy do
   before :example do
     @strat = TttDclovell::RandomMoveStrategy.new

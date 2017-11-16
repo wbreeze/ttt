@@ -1,9 +1,10 @@
 RSpec.describe TttDclovell::BoardPretty do
+  # rubocop:disable Layout/SpaceAfterComma
   before :each do
     @board = TttDclovell::GameBoard.new
     @labels = {
-      row: ['1', '2', '3'],
-      col: ['A', 'B', 'C']
+      row: %w[1 2 3],
+      col: %w[A B C]
     }
     @display = TttDclovell::BoardPretty.new(@labels[:row], @labels[:col])
   end
@@ -29,5 +30,4 @@ RSpec.describe TttDclovell::BoardPretty do
     expect(text).to match(/ 2  | X | O | X |/)
     expect(text).to match(/ 3  | O | X | O |/)
   end
-
 end
