@@ -1,3 +1,14 @@
+<a href="https://codeclimate.com/github/wbreeze/ttt/maintainability">
+  <img
+    src="https://api.codeclimate.com/v1/badges/3c33f1e12008be62024e/maintainability"
+  />
+</a>
+<a href="https://codeclimate.com/github/wbreeze/ttt/test_coverage">
+  <img
+    src="https://api.codeclimate.com/v1/badges/3c33f1e12008be62024e/test_coverage"
+  />
+</a>
+
 ## Tic-tac-toe
 
 Play Tic-tac-toe from the terminal, against the computer.
@@ -6,6 +17,10 @@ Play Tic-tac-toe from the terminal, against the computer.
 
 In order to run the program, from a command line with Ruby
 and RubyGems available:
+
+    > ./bin/ttt
+
+or to install and run it:
 
     > gem build ttt_dclovell.gemspec
     > gem install ttt_dclovell-#.#.#.gem
